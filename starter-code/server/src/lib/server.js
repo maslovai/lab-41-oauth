@@ -14,7 +14,8 @@ import errorHandler from '../middleware/error-middleware.js'
 const app = express()
 
 // global middleware
-app.use(morgan('dev'))
+app.use(morgan('dev'));
+
 app.use(cors({
   origin: process.env.CORS_ORIGINS.split(' '),
   credentials: true, 

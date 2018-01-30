@@ -16,14 +16,13 @@
 			let QueryString = Object.keys(options).map((key)=>{
 				return `${key}=` + encodeURIComponent(options[key])
 			}).join("&")
-			console.log(QueryString);
+			// console.log(QueryString);
 			let authURL = `${googleURL}?${QueryString}`;
-			console.log('url:',authURL);
+			// console.log('url:',authURL);
 			let a = document.createElement('a');
 			a.setAttribute('href', authURL);
 			a.textContent = 'login with Google';
 			document.body.appendChild(a);
-
 		</script>
 	
 	</body>

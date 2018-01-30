@@ -42,11 +42,12 @@ export default new Router()
             .catch(next);
     })
 
-    .get('oauth/google/code', (req, res, next)=>{
+    .get('/oauth/google/code', (req, res, next)=>{
         let code = (req.query.code);
+        console.log('getting that code::::::::::', code);
         superagent
-        .type('form')
         .post('https://googleapis.com/oauth2/v4/token')
+        .type('form')
         .send({
             code:code,
             client_id: process.env.GOOGLE_CLIENT_ID,
