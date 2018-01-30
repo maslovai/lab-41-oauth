@@ -1,0 +1,19 @@
+{
+  "name": "lab-41-oauth",
+  "version": "1.0.0",
+  "description": "401 JS --  Lab 41 OAUTH BACKEND ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maslovai/lab-41-oauth.git"
+  },
+  "author": "iryna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maslovai/lab-41-oauth/issues"
+  },
+  "homepage": "https://github.com/maslovai/lab-41-oauth#readme"
+}

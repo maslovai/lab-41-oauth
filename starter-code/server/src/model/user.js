@@ -7,6 +7,7 @@ import * as jwt from 'jsonwebtoken';
 import createError from 'http-errors';
 import {promisify} from '../lib/promisify.js';
 import Mongoose, {Schema} from 'mongoose';
+import faker from 'faker';
 
 // SCHEMA
 const userSchema =    new Schema({
@@ -61,6 +62,24 @@ User.createFromSignup = function (user) {
         });
     
 };
-
+User.createFromOauth = function(OauthUser){
+    if(!OauthUser||!OauthUser.email){
+        return Promise.reject( createError(400, 'VALIDATION ERROR: missing username email or password ') );        
+    }
+    return User.findOne({email:OauthUser.email})
+    .then(user=>{
+        console.log('hey, ', user.userName);
+        if(!user) { throw new Error('user not found')}
+        return user
+    })
+    .catch(err=>{
+        let username = faker.internet.user_name();
+        console.log('hey, ', username);
+        return User.save({
+            username:username,
+            email:OauthUser.email
+        })
+    })
+}
 // INTERFACE
 export default User;
