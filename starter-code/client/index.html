@@ -7,7 +7,7 @@
 			let googleURL = "https://accounts.google.com/o/oauth2/v2/oauth";
 			let options = {
 				client_id: '953361741981-u815nbs0j5hr7ctfig5ccmlek8dpfl1e.apps.googleusercontent.com',
-				redirect_uri:'https://localhost:8080/oauth/google/code',
+				redirect_uri:'https://localhost:3000/oauth/google/code',
 				scope: 'email openid profile',
 				prompt: 'consent',
 				response_type: 'code'
@@ -18,6 +18,7 @@
 			}).join("&")
 			console.log(QueryString);
 			let authURL = `${googleURL}?${QueryString}`;
+			console.log('url:',authURL);
 			let a = document.createElement('a');
 			a.setAttribute('href', authURL);
 			a.textContent = 'login with Google';
