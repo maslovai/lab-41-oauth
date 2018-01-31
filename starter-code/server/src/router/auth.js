@@ -42,25 +42,26 @@ export default new Router()
             .catch(next);
     })
 
-    .get('/oauth/google/code', (req, res, next)=>{
+    .post('/oauth/google/code', (req, res, next)=>{
         let code = (req.query.code);
-        console.log('id::::::::::', process.env.GOOGLE_CLIENT_ID);
+        console.log('in post to oauth::::::::::');
 
         let  myToken = superagent
         .post('https://googleapis.com/oauth2/v4/token')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
         .type('form')
         .send({
             code: code,
             client_id: process.env.GOOGLE_CLIENT_ID,
             client_secret: process.env.GOOGLE_CLIENT_SECRET,
-            redirect_uri: `${process.env.API_URL}/oauth/google/code`,
+            redirect_uri: `http://localhost:3000/oauth/google/code`,
             grant_type:`authorization_code`
         });
         console.log("returned token:", myToken.body);
-        myToken.catch(console.error);
+        // myToken.catch(console.error);
         myToken
         .then(res=>{
-            console.log('starting step2');
+            console.log('starting step 2 ');
             let googleToken = res.body.access_token;
             console.log('step2, token', googleToken);
             return(googleToken)  

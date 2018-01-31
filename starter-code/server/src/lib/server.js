@@ -14,8 +14,7 @@ import errorHandler from '../middleware/error-middleware.js'
 const app = express()
 
 // global middleware
-app.use(morgan('dev'));
-
+app.use(morgan('dev'))
 app.use(cors({
   origin: process.env.CORS_ORIGINS.split(' '),
   credentials: true, 
@@ -35,15 +34,14 @@ const state = {
 
 // INTERFACE 
 export const start = (port) => {
-  let usePort = port || process.env.PORT;
   return new Promise((resolve, reject) => {
     if (state.isOn) 
       return reject(new Error('USAGE ERROR: the state is on'))
     state.isOn = true
     mongo.start()
     .then(() => {
-      state.http = app.listen(usePort, () => {
-        console.log('__SERVER_UP__', usePort)
+      state.http = app.listen(port || process.env.PORT, () => {
+        console.log('__SERVER_UP__', process.env.PORT)
         resolve()
       })
     })
