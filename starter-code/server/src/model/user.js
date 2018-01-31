@@ -63,6 +63,7 @@ User.createFromSignup = function (user) {
     
 };
 User.createFromOauth = function(OauthUser){
+    console.log('in create from oauth::::::')
     if(!OauthUser||!OauthUser.email){
         return Promise.reject( createError(400, 'VALIDATION ERROR: missing username email or password ') );        
     }
@@ -73,7 +74,8 @@ User.createFromOauth = function(OauthUser){
         return user
     })
     .catch(err=>{
-        let username = faker.internet.user_name();
+        console.log('calling faker::::');
+        let username = faker.internet.userName();
         console.log('hey, ', username);
         return User.save({
             username:username,
